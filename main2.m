@@ -14,7 +14,19 @@ fprintf('Duração da musica: %d min e %g s\n', floor(tempo/60), (tempo/60-floor(t
 mu = mean(musica);
 musica = musica - mu;
 %Obtém eigenvectors de matriz de autocorrelação
-[s,f,t] = espectrograma(musica,fs);
+[n,musicar] = PartAnalysesCicle(musica,fs,mu);
+%v1 = getEigVec(musica);
+%v1 = transpose(v1);
+%Obtém principal componente 1
+%musica1 = v1*musica(1:1e2+1)*v1;
 %Grava musica no ficheiro
 %audiowrite('parte1.wav',musica1,fs);
-fprintf('A concatenar várias partes...\n');
+fprintf('A concatenar várias partes...');
+musicar = [];
+for k=1:n-1
+   fprintf('Concatenando %d\n', num2str(k));
+   musicar = [musicar; audioread(strcat('parte',num2str(k),'.wav'))];
+end
+plot(musicar);
+audiowrite('musicar.wav',musicar,fs);
+%delete('parte*');
