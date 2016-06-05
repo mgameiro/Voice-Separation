@@ -14,7 +14,12 @@ fprintf('Duração da musica: %d min e %g s\n', floor(tempo/60), (tempo/60-floor(t
 mu = mean(musica);
 musica = musica - mu;
 %Obtém eigenvectors de matriz de autocorrelação
-[s,f,t] = espectrograma(musica,fs);
+fprintf('Calculando espectrograma...\n');
+musica = musica(1:5e6);
+spectrogram(musica,hann(64),3*64/4,4*64,fs,'yaxis');
+%[s,f,t] = espectrograma(musica,fs);
+fprintf('Calculando vectores próprios...\n');
+%v = EigVec(s,f,t);
 %Grava musica no ficheiro
 %audiowrite('parte1.wav',musica1,fs);
 fprintf('A concatenar várias partes...\n');
