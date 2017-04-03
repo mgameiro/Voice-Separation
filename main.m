@@ -13,8 +13,8 @@ filename = 'Sacrifice.wav';
 tempo = length(music)*(1/fs);
 fprintf('Duração da musica: %d min e %g s\n', floor(tempo/60), (tempo/60-floor(tempo/60))*60);
 %% Geração de espectrograma do sinal da musica
-
+specmusic = specMusic(music, fs);
 %% Aplicação de PCA
-pcamusic = pca(specmusic);
+% pcamusic = pca(specmusic);
 %% Retira componente vocal
-music = removeVoice(music,specmusic,1);
+% music = removeVoice(music,specmusic,1);
