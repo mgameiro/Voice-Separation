@@ -1,6 +1,8 @@
 %% Recebe uma musica e separa parte intstrumental da parte vocal
 
 clear all;
+close all;
+clc;
 
 %% Abertura do ficheiro da musica
 %Recebe musica a abrir
@@ -16,9 +18,10 @@ fprintf('Duração da musica: %d min e %g s\n', floor(tempo/60), (tempo/60-floor(t
 
 %% Geração de espectrograma do sinal da musica
 specmusic = specMusic(music, fs);
+K = getWindowLimits(specmusic,50);
 
 %% Aplicação de PCA
-[pcamusic,pcascore,pcalatent] = pca(specmusic);
+%[pcamusic,pcascore,pcalatent] = pca(specmusic);
 
 %% Retira componente vocal
 % music = removeVoice(music,specmusic,1);
