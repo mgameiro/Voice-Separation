@@ -17,14 +17,15 @@ tempo = length(music)*(1/fs);
 fprintf('Duração da musica: %d min e %g s\n', floor(tempo/60), (tempo/60-floor(tempo/60))*60);
 
 %% Geração de espectrograma do sinal da musica
-specmusic = specMusic(music, fs);
-K = getWindowLimits(specmusic,20);
+[specmusic,wind] = specMusic(music, fs);
+[K,Km] = getWindowLimits(specmusic,20,wind);
 mspecmusic = abs(specmusic);
 
 %% Aplicação de PCA
 tic,
 %[pcamusic,pcascore,pcalatent] = pca(specmusic);
 V = getEigenVectors(specmusic,K);
+p = principalComponent(music,K);
 toc
 
 %% Retira componente vocal

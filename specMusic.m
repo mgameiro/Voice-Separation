@@ -1,4 +1,4 @@
-function [specmusic] = specMusic(music, fs)
+function [specmusic,window] = specMusic(music, fs)
     %Create a music spectrogram with the adequate scales and with data
     %readble after this
     %   Inputs:
@@ -14,7 +14,7 @@ function [specmusic] = specMusic(music, fs)
     %We want a minimum 2 periods at a window of 18Hz frequency
     window = hamming((2/18)*fs);
     
-    specmusic = spectrogram(music,window, 'yaxis');
+    specmusic = spectrogram(music,window,'yaxis');
         
 end
 
