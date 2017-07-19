@@ -22,12 +22,13 @@ K = getWindowLimits(specmusic,20);
 mspecmusic = abs(specmusic);
 
 %% Aplicação de PCA
+tic,
 %[pcamusic,pcascore,pcalatent] = pca(specmusic);
-%[p,D] = fpca(mspecmusic,K);
-test;
+V = getEigenVectors(specmusic,K);
+toc
 
 %% Retira componente vocal
-% music = removeVoice(music,specmusic,1);
+vocal = reconstructVocal(p,V,mu,K);
 
 %% Save vocal part in file
-% audiowrite('vocal.wav');
+audiowrite('vocal.wav',vocal,fs);
