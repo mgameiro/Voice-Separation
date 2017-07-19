@@ -23,7 +23,8 @@ mspecmusic = abs(specmusic);
 
 %% Aplicação de PCA
 %[pcamusic,pcascore,pcalatent] = pca(specmusic);
-p = fpca(mspecmusic,K);
+%[p,D] = fpca(mspecmusic,K);
+test;
 
 %% Retira componente vocal
 % music = removeVoice(music,specmusic,1);
