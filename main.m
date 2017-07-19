@@ -18,10 +18,15 @@ fprintf('Duração da musica: %d min e %g s\n', floor(tempo/60), (tempo/60-floor(t
 
 %% Geração de espectrograma do sinal da musica
 specmusic = specMusic(music, fs);
-K = getWindowLimits(specmusic,50);
+K = getWindowLimits(specmusic,10);
+mspecmusic = abs(specmusic);
 
 %% Aplicação de PCA
 %[pcamusic,pcascore,pcalatent] = pca(specmusic);
+p = fpca(mspecmusic,K);
 
 %% Retira componente vocal
 % music = removeVoice(music,specmusic,1);
+
+%% Save vocal part in file
+% audiowrite('vocal.wav');
