@@ -1,9 +1,9 @@
-function [p] = fpca(specmusic,K)
+function [p,xr] = fpca(specmusic,K)
     %UNTITLED Summary of this function goes here
     %   Detailed explanation goes here
     
     %Create cell array
-    p = cell(1,length(K(:,1)));
+    ca = cell(1,length(K(:,1)));
     
     %Calculate principal components for each window
     %for k = 1:length(K(:,1))
@@ -20,9 +20,12 @@ function [p] = fpca(specmusic,K)
         R = specm*specmt;
         %Calculate principal components
         [V,D,W] = eig(R);
-        D = abs(D);
-        p{1,k} = transpose(V)*specm;
-        %Results in cell array
+%         D = abs(D);
+%         ca{1,k} = transpose(V)*specm;
+        p = ones(1,length(V(1,:)));
+        %Reconstruct music
+        pm = repmat(p,length(V(:,1)),1);
+        xr = pm.*V + mu;
     end
 end
 

@@ -18,7 +18,7 @@ fprintf('Duração da musica: %d min e %g s\n', floor(tempo/60), (tempo/60-floor(t
 
 %% Geração de espectrograma do sinal da musica
 specmusic = specMusic(music, fs);
-K = getWindowLimits(specmusic,10);
+K = getWindowLimits(specmusic,20);
 mspecmusic = abs(specmusic);
 
 %% Aplicação de PCA
