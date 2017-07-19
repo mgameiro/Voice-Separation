@@ -25,7 +25,7 @@ function [Vc] = getEigenVectors(specmusic,K)
         specmt = transpose(specm);
         %Autocorrelation matrix
         R = specm*specmt;
-        %Calculate principal components
+        %Calculate eigenvectors
         %[V,D,W] = eig(R);
         [V,~] = eigs(R,5);
         Vc{1,k} = V;
