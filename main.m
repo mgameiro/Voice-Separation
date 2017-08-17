@@ -16,6 +16,9 @@ filename = 'Cats in the cradle - Ricky Skaggs.wav';
 tempo = length(music)*(1/fs);
 fprintf('Duração da musica: %d min e %g s\n', floor(tempo/60), (tempo/60-floor(tempo/60))*60);
 
+%% Remove mean value of music
+[music,mu] = removeMeanValue(music);
+
 %% Geração de espectrograma do sinal da musica
 [specmusic,wind] = specMusic(music, fs);
 [K,Km] = getWindowLimits(specmusic,20,wind);
@@ -28,7 +31,7 @@ p = principalComponent(music,Km);
 toc
 
 %% Retira componente vocal
-vocal = reconstructVocal(p,V,mu,Km);
+vocal = reconstructVocal(wind,p,V,mu,Km);
 
 %% Save vocal part in file
 audiowrite('vocal.wav',vocal,fs);
