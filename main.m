@@ -26,12 +26,13 @@ mspecmusic = abs(specmusic);
 
 %% Aplicação de PCA
 tic,
-V = getEigenVectors(specmusic,K);
-p = principalComponent(music,Km);
+[p,V] = getEigenVectors(specmusic,K);
 toc
 
 %% Retira componente vocal
+tic,
 vocal = reconstructVocal(wind,p,V,mu,Km);
+toc
 
 %% Save vocal part in file
 audiowrite('vocal.wav',vocal,fs);
